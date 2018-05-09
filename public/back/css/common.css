@@ -9,3 +9,115 @@
   line-height: 40px;
   font-size: 18px;
 }
+
+html,body{
+  width: 100%;
+  height: 100%;
+}
+/* lvha */
+a:link,
+a:visited,
+a:hover,
+a:active{
+  text-decoration: none;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+ul{
+  list-style: none;
+}
+.red {
+  color: #A94442;
+}
+
+/*乐淘侧边栏*/
+.lt_aside{
+  width: 180px;
+  height: 100%;
+  background-color: #222D32;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  
+}
+.brand{
+  width: 180px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 24px;
+  text-align: center;
+  background-color: #367FA9;
+  
+}
+.brand a{
+  color: #fff;
+}
+.user{
+  width: 180px;
+  height: 180px;
+  padding-top: 30px;
+}
+.user img{
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+.user p{
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  height: 30px;
+  line-height: 30px;
+}
+.nav li a {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 40px;
+  color: #fff;
+  border-left: 3px solid transparent;
+}
+.nav li a.current{
+  background-color: #1D1F21;
+  border-left: 3px solid #006699;
+}
+.nav li a i{
+  margin-right: 5px;
+ }
+.nav li .child a{
+  padding-left: 60px;
+}
+/*乐淘主体*/
+.lt_main{
+  min-height: 1000px;
+  background-color: pink;
+  padding-left: 180px;
+  padding-top: 50px;
+}
+.lt_topbar{
+  width: 100%;
+  height: 50px;
+  background-color: #3C8DBC;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-left: 180px;
+  
+}
+.lt_topbar a{
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 20px;
+  color: #fff;
+}
+.breadcrumb{
+  margin-top: 20px;
+}

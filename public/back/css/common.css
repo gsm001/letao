@@ -1,13 +1,10 @@
-.bg_color {
+.bg_color{
   background-color: #222D32;
 }
-
-.mt_150 {
+.mt_150{
   margin-top: 150px;
 }
-
-
-.panel-title {
+.panel-title{
   height: 40px;
   line-height: 40px;
   font-size: 18px;

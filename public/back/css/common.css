@@ -100,7 +100,7 @@ ul{
 /*乐淘主体*/
 .lt_main{
   min-height: 1000px;
-  background-color: pink;
+
   padding-left: 180px;
   padding-top: 50px;
   transition: all 1s;
@@ -132,4 +132,9 @@ ul{
 }
 .lt_main .breadcrumb{
   margin-top: 20px;
+}
+.echarts_1,
+.echarts_2{
+  width: 48%;
+  height: 400px;
 }

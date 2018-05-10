@@ -42,7 +42,11 @@ ul{
   top: 0;
   left: 0;
   z-index: 999;
+  transition: all 1s;
   
+}
+.lt_aside.hidemenu{
+  left: -180px;
 }
 .brand{
   width: 180px;
@@ -99,6 +103,10 @@ ul{
   background-color: pink;
   padding-left: 180px;
   padding-top: 50px;
+  transition: all 1s;
+}
+.lt_main.hidemenu {
+  padding-left: 0px;
 }
 .lt_topbar{
   width: 100%;
@@ -108,7 +116,11 @@ ul{
   top: 0;
   left: 0;
   padding-left: 180px;
+  transition: all 1s;
   
+}
+.lt_topbar.hidemenu {
+  padding-left: 0px;
 }
 .lt_topbar a{
   width: 50px;
@@ -118,6 +130,6 @@ ul{
   font-size: 20px;
   color: #fff;
 }
-.breadcrumb{
+.lt_main .breadcrumb{
   margin-top: 20px;
 }

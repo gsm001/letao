@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>乐淘商城</title>
+  <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.min.css">
+  <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
+  <link rel="stylesheet" href="./css/common.css">
+</head>
+<body>
+
+
+<!-- 乐淘侧边栏 -->
+<div class="lt_aside">
+  <!-- 大标题 -->
+  <div class="brand">
+    <a href="#">黑马20期</a>
+  </div>
+
+  <!-- 头像 -->
+  <div class="user">
+    <img src="./images/default.jpg" alt="">
+    <p>超级管理员</p>
+  </div>
+
+  <!-- 导航 -->
+  <div class="nav">
+    <ul>
+      <li><a href="user.html" class="current"><i class="glyphicon glyphicon-user"></i><span>用户管理</span></a></li>
+      <li>
+        <a href="javascript:;" class="category"><i class="glyphicon glyphicon-list"></i><span>分类管理</span></a>
+        <div class="child" style="display: none;">
+          <a href="first.html">一级分类</a>
+          <a href="second.html">二级分类</a>
+        </div>
+      </li>
+      <li><a href="product.html"><i class="glyphicon glyphicon-tags"></i><span>商品管理</span></a></li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- 乐淘主体 -->
+<div class="lt_main">
+
+  <!-- lt_topbar -->
+  <div class="lt_topbar">
+    <a href="javascript:;" class="pull-left icon_menu">
+      <i class="glyphicon glyphicon-align-justify"></i>
+    </a>
+    <a href="javascript:;" class="pull-right icon_logout">
+      <i class="glyphicon glyphicon-log-out"></i>
+    </a>
+  </div>
+
+  <!-- 希望有一个容器, 可以撑满父容器, 会自动宽度100%, 会自己添加一个 15px内边距 -->
+  <div class="container-fluid">
+
+    <!-- 路径导航 -->
+    <ol class="breadcrumb">
+      <li><a href="index.html">管理系统 </a></li>
+      <li class="active">用户管理</li>
+    </ol>
+
+    <div class="lt_content">
+      <!-- 表格 table-bordered 加上边框  table-hover 鼠标高亮 -->
+      <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th width="10%">序号</th>
+          <th width="20%">用户名</th>
+          <th width="30%">手机号</th>
+          <th width="20%">状态</th>
+          <th width="20%">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- 挖个坑 -->
+        </tbody>
+      </table>
+
+
+      <div class="text-right">
+        <!-- 分页按钮 -->
+        <ul id="paginator"></ul>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<!-- 登录模态框 -->
+<!-- role sr-only aria 盲人设备使用的 -->
+<!-- data-dismiss="modal" 添加以后可以关闭模态框 -->
+<div class="modal fade" id="logoutModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        <h4 class="modal-title">温馨提示</h4>
+      </div>
+      <div class="modal-body">
+        <p class="red"><i class="glyphicon glyphicon-info-sign"></i> 您确定要退出后台管理系统吗？</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="logoutBtn">退出</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- 启用禁用模态框 -->
+<div class="modal fade" id="userModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        <h4 class="modal-title">温馨提示</h4>
+      </div>
+      <div class="modal-body">
+        <p class="red"><i class="glyphicon glyphicon-info-sign"></i> 你确定要执行此操作吗？</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="submitBtn">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--
+  模板引擎使用步骤
+  1. 引入模板 js
+  2. 准备模板
+  3. 准备数据
+  4. 将数据和模板相结合, 渲染到页面中去
+-->
+
+<script type="text/html" id="tpl">
+  {{ each rows v i }}
+    <tr>
+      <!-- 在当前页多少条的基础上, 还要加上前面有多少条 -->
+      <td> {{ i + 1 + (page-1) * size }} </td>
+      <td> {{ v.username }}</td>
+      <td> {{ v.mobile }}</td>
+      <!-- isDelete 1正常 0禁用 -->
+      <td>{{ v.isDelete === 1 ? "正常" : "禁用" }}</td>
+      <td data-id="{{ v.id }}">
+        <!-- 说明正常状态, 显示禁用 -->
+        {{ if v.isDelete === 1 }}
+          <button class="btn btn-danger" >禁用</button>
+        {{ /if }}
+
+        {{ if v.isDelete === 0 }}
+          <button class="btn btn-success">启用</button>
+        {{ /if }}
+      </td>
+    </tr>
+  {{ /each }}
+</script>
+
+
+
+<script src="./lib/jquery/jquery.min.js"></script>
+<script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+<script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+<script src="./lib/nprogress/nprogress.js"></script>
+<script src="./lib/artTemplate/template-web.js"></script>
+<script src="js/common.js"></script>
+<script src="js/user.js"></script>
+
+</body>
+</html>

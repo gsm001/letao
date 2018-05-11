@@ -9,7 +9,7 @@ if(location.href.lastIndexOf("login.html") === -1){
     type:"get",
     url:"/employee/checkRootLogin",
     dataType:"json",
-    success:function(){
+    success:function(info){
       if(info.error === 400){
         location.href = "login.html";
       }

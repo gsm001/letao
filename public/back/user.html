@@ -67,6 +67,26 @@
       <li><a href="#">管理系统</a></li>
       <li class="active">用户管理</li>
     </ol>
+    <!--中心内容-->
+    <div class="lt_content">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th width=10%>序号</th>
+            <th width=20%>用户名</th>
+            <th width=30%>手机号</th>
+            <th width=20%>状态</th>
+            <th width=20%>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--挖个坑-->
+        </tbody>
+      </table>
+      <div class="text-right">
+        <ul id="paginator"></ul>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -90,10 +110,61 @@
     </div>
   </div>
 </div>
+
+<!-- 禁用模态框 -->
+<div class="modal fade" id="userModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ><span >&times;</span></button>
+        <h4 class="modal-title">温馨提示</h4>
+      </div>
+      <div class="modal-body">
+        <p class="red"><i class="glyphicon glyphicon-info-sign"></i> 你确定执行此操作吗？</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="userBtn">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+  模板引擎使用步骤
+  1. 引入模板 js
+  2. 准备模板
+  3. 准备数据
+  4. 将数据和模板相结合, 渲染到页面中去
+-->
+<script type="text/html" id="userTpl">
+  {{ each rows v i}}
+  <tr>
+    <!-- 在当前页多少条的基础上, 还要加上前面有多少条 -->
+    <td>{{ i+1 + (page-1)*size}}</td>
+    <td>{{v.username}}</td>
+    <td>{{v.mobile}}</td>
+    <!-- isDelete 1正常 0禁用 -->
+    <td>{{v.isDelete === 1? "正常" : "禁用"}}</td>
+    <td data-id = "{{v.id}}">
+      {{if v.isDelete === 1 }}
+        <button class="btn btn-danger">禁用</button>
+      {{/if}}
+      {{if v.isDelete === 0 }}
+        <button class="btn btn-success">启用</button>
+      {{/if}}
+    </td>
+  </tr>
+  {{ /each}}
+</script>
+
 <script src="lib/jquery/jquery.min.js"></script>
 <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+<script src="lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
 <script src="lib/nprogress/nprogress.js"></script>
+<script src="lib/artTemplate/template-web.js"></script>
 <script src="js/common.js"></script>
+<script src="js/user.js"></script>
 </body>
 </html>
